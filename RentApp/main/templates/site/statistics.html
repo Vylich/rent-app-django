@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block content %}
+
+<head>
+  <center><h1>Панель директора</h1></center>
+  <style>
+    .layer1 {
+      padding: 5px; /* Поля вокруг текста */
+      width: 550px; /* Ширина слоя */
+      float: left;
+    }
+    .layer2 {
+      padding: 5px; /* Поля вокруг текста */
+      width: 550px; /* Ширина слоя */
+      float: left;
+    }
+  </style>
+</head>
+
+<div class="layer1">
+  <center><h1>История операций</h1></center>
+  {% for order in statistic_orders %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h2 class="card-title">{{ order.car }}</h2>
+      <p class="card-text">Владелец авто: {{ order.car.owner }}</p>
+      {% if order.client %}
+      <p class="badge badge-danger">Арендован {{ order.client }}</p>
+      {% elif order.car.status == 'booking' %}
+      <p class="badge badge-warning">Автомобиль забронирован</p>
+      {%else%}
+      <p class="badge badge-success">Автомобиль свободен</p>
+      {% endif %}
+    </div>
+    <div class="card-footer">
+      <p class="card-text">Дата оформления заказа: {{ order.updated_at }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="layer2">
+  <center><h1>Автомобили</h1></center>
+  {% for car in cars %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h4 class="card-title">{{ car }}</h4>
+
+      <p
+        class="badge {% if car.get_status_display == 'Сдана'%}badge-danger{% elif car.get_status_display == 'Сдается'%}badge-success{%else%}badge-warning{%endif%}"
+      >
+        {{ car.get_status_display }}
+      </p>
+      <br />
+      <div class="card-footer">
+        <a class="btn btn-warning" href="{% url 'current_car' id=car.id %}"
+          >Изменить</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

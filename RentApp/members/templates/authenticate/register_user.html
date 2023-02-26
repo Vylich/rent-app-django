@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Ошибка</p>
+{% endif %}
+<h1>Регистрация</h1>
+<br/>
+<div class="card mb-3">
+
+        <form action="{% url 'register_user' %}" method=POST>
+            {% csrf_token %}
+            {{ form.as_p }}
+
+
+
+            <input type="submit"
+            value="Сохранить" class="
+            btn btn-secondary">
+            <a href="{% url 'sysadmin' %}"class="btn btn-secondary">Назад</a>
+
+        </form>
+</div>
+<br/><br/>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %}
+<h1>Добавить автомобиль</h1>
+<div class="mb-3">
+  <form action="{% url 'ocen' %}" method="POST">
+    {% csrf_token %} {{ form.as_p }}
+    <input type="submit" value="Сохранить" class="btn btn-secondary" />
+    <input type="submit" value="Назад" class="btn btn-secondary" />
+  </form>
+</div>
+{% endblock %}

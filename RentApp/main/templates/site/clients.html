@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %}
+<h1>Клиенты</h1>
+<div class="card mb-3">
+  {% for client in clients %}
+  <div class="card-body">
+    <h2 class="card-title">{{ client }}</h2>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

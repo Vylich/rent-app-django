@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block content %}
+<h1 xmlns="http://www.w3.org/1999/html">Добавить заказ на сдачу авто</h1>
+<div>
+  <div class="mb-3">
+    <form action="" method="POST">
+      <div>
+        <label for="client" class="form-label">Клиент: </label>
+        <select
+          id="client"
+          class="form-select"
+          aria-label=".form-select-lg example"
+          size="1"
+          name="client"
+        >
+          {% for client in clients %}
+          <option value="{{client.id}}">{{ client.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="md-3">
+        <label for="car" class="form-label">Автомобиль:</label>
+        <select
+          id="car"
+          class="form-select"
+          aria-label="Default select example"
+          size="1"
+          name="car"
+        >
+          {% for car in cars %}
+          <option value="{{car.id}}">{{ car }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-secondary mt-3">Сохранить</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

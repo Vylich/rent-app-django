@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<div>
+  {% for car in cars %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h2 class="card-title">{{ car }}</h2>
+
+      <p
+        class="badge {% if car.get_status_display == 'Сдана'%}badge-warning{%else%}badge-success{%endif%}"
+      >
+        {{ car.get_status_display }}
+      </p>
+      <br />
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-warning" href="{% url 'current_car' id=car.id %}"
+        >Edit</a
+      >
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

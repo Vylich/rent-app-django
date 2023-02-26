@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %} {% if form.errors %}
+<p>Ошибка</p>
+{% endif %}
+<h1>Добавить клиента</h1>
+<div class="mb-0">
+  <form action="{% url 'priem' %}" method="POST">
+    <div class="form-group">
+      {% csrf_token %} {{ form.as_p }}
+      <input type="submit" value="Сохранить" class="btn btn-secondary" />
+    </div>
+    {% for client in clients %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h2 class="card-title">{{ client }}</h2>
+      </div>
+      <div class="card-footer">
+        <a
+          class="btn btn-warning"
+          href="{% url 'current_client' id=client.id %}"
+          >Просмотр</a
+        >
+      </div>
+    </div>
+    {% endfor %}
+  </form>
+</div>
+{% endblock %}

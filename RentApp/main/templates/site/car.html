@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block content %} {% if form.errors %}
+<p>Ошибка</p>
+{% endif %}
+<h1>Изменить машину</h1>
+<form action="" method="POST">
+  {% csrf_token %} {{ form.as_p }}
+
+  <input type="submit" value="Сохранить" class="btn btn-secondary" />
+</form>
+{% endblock %}
